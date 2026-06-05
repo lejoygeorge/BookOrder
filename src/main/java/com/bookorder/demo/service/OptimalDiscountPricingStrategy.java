@@ -51,7 +51,7 @@ public class OptimalDiscountPricingStrategy implements PricingStrategy {
                 remainingBooks.set(actualBookId, remainingBooks.get(actualBookId) - 1)
         );
         int currentGroupSize = activeIndices.size();
-        double groupPrice = BookDiscountDetails.GROUP_PRICE.get(currentGroupSize);
+        double groupPrice = BookDiscountUtils.GROUP_PRICE.get(currentGroupSize);
         return groupPrice + findMinimumPrice(new BookBasket(remainingBooks));
     }
 }
