@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignore all markdown and cmd files
+*.md
+*.cmd
+
+# Ignore git attributes
+.gitattributes
