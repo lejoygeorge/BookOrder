@@ -28,15 +28,11 @@ public class OptimalDiscountPricingStrategy implements PricingStrategy {
         }
         var counts = currentBasket.counts();
         int[] distinctBooksPresent = IntStream.range(0, counts.size())
-                .filter(index -> counts.get(index) > 0)
-                .toArray();
-
+                .filter(index -> counts.get(index) > 0).toArray();
         int numberOfPossibleCombinations = 1 << distinctBooksPresent.length;
-
         double minimumPrice = IntStream.range(1, numberOfPossibleCombinations)
                 .mapToDouble(combination -> evaluateCombination(currentBasket, distinctBooksPresent, combination))
-                .min()
-                .orElse(Double.MAX_VALUE);
+                .min().orElse(Double.MAX_VALUE);
         basketCache.put(currentBasket, minimumPrice);
         return minimumPrice;
     }
@@ -45,11 +41,8 @@ public class OptimalDiscountPricingStrategy implements PricingStrategy {
         var remainingBooks = new ArrayList<>(basket.counts());
         var activeIndices = IntStream.range(0, distinctBooksPresent.length)
                 .filter(bookIndex -> (combination & (1 << bookIndex)) != 0)
-                .mapToObj(bookIndex -> distinctBooksPresent[bookIndex])
-                .toList();
-        activeIndices.forEach(actualBookId ->
-                remainingBooks.set(actualBookId, remainingBooks.get(actualBookId) - 1)
-        );
+                .mapToObj(bookIndex -> distinctBooksPresent[bookIndex]).toList();
+        activeIndices.forEach(actualBookId -> remainingBooks.set(actualBookId, remainingBooks.get(actualBookId) - 1));
         int currentGroupSize = activeIndices.size();
         double groupPrice = BookDiscountUtils.GROUP_PRICE.get(currentGroupSize);
         return groupPrice + findMinimumPrice(new BookBasket(remainingBooks));

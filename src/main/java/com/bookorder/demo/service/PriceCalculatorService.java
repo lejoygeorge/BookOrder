@@ -20,17 +20,11 @@ public class PriceCalculatorService {
 
     public BillDetails calculatePrice(List<BookItem> purchasedItems) {
         double totalOriginalPrice = purchasedItems.stream()
-                .mapToDouble(item -> item.getQuantity() * item.getBook().getPrice())
-                .sum();
+                .mapToDouble(item -> item.getQuantity() * item.getBook().getPrice()).sum();
         List<Integer> quantities = purchasedItems.stream()
-                .collect(Collectors.groupingBy(
-                        BookItem::getBook,
+                .collect(Collectors.groupingBy(BookItem::getBook,
                         () -> new EnumMap<>(BooksEnum.class),
-                        Collectors.summingInt(BookItem::getQuantity)
-                ))
-                .values()
-                .stream()
-                .toList();
+                        Collectors.summingInt(BookItem::getQuantity))).values().stream().toList();
         double totalFinalPrice = pricingStrategy.calculateMinimumPrice(quantities);
         double totalDiscount = totalOriginalPrice - totalFinalPrice;
         var receipt = new BillDetails();
