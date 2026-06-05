@@ -8,9 +8,9 @@
 		<version>3.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>SpringBoot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.bookorder</groupId>
+	<artifactId>BookOrder</artifactId>
+	<version>1.0.1</version>
 	<name/>
 	<description/>
 	<url/>
