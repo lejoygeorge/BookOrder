@@ -41,3 +41,6 @@ build/
 
 # Ignore Maven wrapper script
 mvnw
+
+# Ignore specific folder
+.mvn/
