@@ -3,6 +3,7 @@ package com.bookorder.demo.service;
 import com.bookorder.demo.model.BillDetails;
 import com.bookorder.demo.model.BookItem;
 import com.bookorder.demo.model.BooksEnum;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,6 +27,7 @@ class PriceCalculatorServiceTest {
     private PriceCalculatorService priceCalculatorService;
 
     @Test
+    @DisplayName("Should return 0.0 for all prices when the basket is empty")
     void testCalculatePrice_EmptyBasket() {
         when(pricingStrategy.calculateMinimumPrice(anyList())).thenReturn(0.0);
         BillDetails receipt = priceCalculatorService.calculatePrice(Collections.emptyList());
@@ -35,6 +37,7 @@ class PriceCalculatorServiceTest {
     }
 
     @Test
+    @DisplayName("Should return standard price with zero discount for a single item")
     void testCalculatePrice_SingleItem() {
         List<BookItem> items = List.of(new BookItem(BooksEnum.BOOK1, 1));
         when(pricingStrategy.calculateMinimumPrice(anyList())).thenReturn(50.0);
@@ -45,6 +48,7 @@ class PriceCalculatorServiceTest {
     }
 
     @Test
+    @DisplayName("Should aggregate original prices and calculate discount based on the strategy's final price")
     void testCalculatePrice_MultipleItemsWithGrouping() {
         List<BookItem> items = List.of(
                 new BookItem(BooksEnum.BOOK1, 2),

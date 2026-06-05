@@ -1,5 +1,6 @@
 package com.bookorder.demo.service;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
@@ -11,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class BookDiscountUtilsTest {
 
     @Test
+    @DisplayName("Should correctly calculate and store discounted prices for group sizes 1 to 5")
     void testGroupPricesAreCalculatedCorrectly() {
         assertEquals(50.0, BookDiscountUtils.GROUP_PRICE.get(1), 0.001, "Price for 1 book should be 50.0");
         assertEquals(95.0, BookDiscountUtils.GROUP_PRICE.get(2), 0.001, "Price for 2 books should be 95.0");
@@ -20,6 +22,7 @@ class BookDiscountUtilsTest {
     }
 
     @Test
+    @DisplayName("Private constructor should throw an Exception to prevent instantiation")
     void testPrivateConstructorThrowsException() throws NoSuchMethodException {
         Constructor<BookDiscountUtils> constructor = BookDiscountUtils.class.getDeclaredConstructor();
         constructor.setAccessible(true);
