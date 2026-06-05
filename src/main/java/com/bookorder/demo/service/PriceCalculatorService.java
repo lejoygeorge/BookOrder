@@ -1,8 +1,8 @@
-package com.example.demo.service;
+package com.bookorder.demo.service;
 
-import com.example.demo.model.BookItem;
-import com.example.demo.model.BooksEnum;
-import com.example.demo.model.BillDetails;
+import com.bookorder.demo.model.BillDetails;
+import com.bookorder.demo.model.BookItem;
+import com.bookorder.demo.model.BooksEnum;
 import org.springframework.stereotype.Service;
 
 import java.util.EnumMap;

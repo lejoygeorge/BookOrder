@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.bookorder.demo.controller;
 
-import com.example.demo.model.BookItem;
-import com.example.demo.model.BillDetails;
-import com.example.demo.service.PriceCalculatorService;
+import com.bookorder.demo.model.BillDetails;
+import com.bookorder.demo.model.BookItem;
+import com.bookorder.demo.service.PriceCalculatorService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
