@@ -2,7 +2,11 @@ package com.bookorder.demo.service;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BookDiscountUtilsTest {
 
@@ -13,5 +17,12 @@ class BookDiscountUtilsTest {
         assertEquals(135.0, BookDiscountUtils.GROUP_PRICE.get(3), 0.001, "Price for 3 books should be 135.0");
         assertEquals(160.0, BookDiscountUtils.GROUP_PRICE.get(4), 0.001, "Price for 4 books should be 160.0");
         assertEquals(187.5, BookDiscountUtils.GROUP_PRICE.get(5), 0.001, "Price for 5 books should be 187.5");
+    }
+
+    @Test
+    void testPrivateConstructorThrowsException() throws NoSuchMethodException {
+        Constructor<BookDiscountUtils> constructor = BookDiscountUtils.class.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        assertThrows(InvocationTargetException.class, constructor::newInstance);
     }
 }
